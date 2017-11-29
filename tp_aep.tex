@@ -163,6 +163,45 @@ L = \frac{X_L}{\omega} = 25.33 nH
   \label{fig:RC-sim}
 \end{figure}
 
+\subsubsection{Abaissement de l'imp\'edance}
+$Re\{Z_{in}\} = 50 \Omega$ et pour le circuit LRC, on a $Z_0 = R_0$ \`a la r\'esonance.
+
+\[
+\frac{1}{Z_{in}} =\frac{1}{Z_1} + \frac{1}{Z_0} = jC_1\omega_0 + \frac{1}{R_0}
+\]
+
+et
+\[
+Re\{Z_{in}\} = 50 \Omega = Re\bigg(\frac{R_0}{1+ j R_0 C_1 \omega_0}\bigg)
+\]
+
+Pour $Z_{in}$ :
+\[
+Z_in = \frac{(1 - j R_0 C_1 \omega_0) R_0}{1 + (R_0 C_1 \omega_0)^2} =\frac{R_0}{1 + (R_0 C_1 \omega_0)^2} - j \frac{R^2_0 C_1 \omega_0} {1 + (R_0 C_1 \omega_0)^2}
+\]
+
+\[
+\implies R_0 C_1 \omega_0 = \sqrt{\frac{R_0}{R_e\{Z_{in}\}} - 1}
+\]
+
+\[
+ C_1  = \frac{1}{R_0 \omega_0}\sqrt{\frac{R_0}{R_e\{Z_{in}\}} - 1}
+\]
+
+On retrouve $ C_1 = 693.7 fF$.
+
+\subsubsection{Adjustement final de l'imp\'edance}
+On essaye d'annuler la partie imaginaire \`a l'\'entr\'ee du circuit d'adaptation : On ajoute une imp\'edance en s\'erie.
+Sachant que : $X_{L1} = \omega_0 L_1$
+\[
+X_{L11} = - Img\{Zin\} = \frac{R^2_0 C_1 \omega_0} {1 + (R_0 C_1 \omega_0)^2}
+\]
+
+\[
+\implies L_1 = \frac{R^2_0 C_1} {1 + (R_0 C_1 \omega_0)^2}
+\]
+
+d'ou $L_1 = 34.6 nH$
 
 \clearpage
 \addcontentsline{toc}{section}{R\'ef\'erences}
