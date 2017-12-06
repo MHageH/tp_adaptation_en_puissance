@@ -65,7 +65,8 @@
 
 \fi
 
-\section{Introduction}
+\section*{Introduction}
+\addcontentsline{toc}{section}{Introduction}
 
 \section{Imp\'edance et Admittance - Analyse sous Cadence}
 \subsection{\'Etude th\'eorique}
@@ -239,7 +240,7 @@ X_{L11} = - Img\{Zin\} = \frac{R^2_0 C_1 \omega_0} {1 + (R_0 C_1 \omega_0)^2}
 \subsubsection{Calcul de la tension du circuit d'adaptation}
 On a :
 \[
-P_e = 0 \phantom{4} db_{m} = 1 mW = \frac{V^2_1}{50} \implies \sqrt{P_0 \times 50} = 0.223 V
+P_e = 0 \phantom{4} db_{m} = 1 mW = \frac{V^2_1}{50} \implies V_1 = \sqrt{P_0 \times 50} = 0.223 V
 \]
 
 Adaptation en puissance en $50 \Omega$, $ P_e = P_S = \frac{V^2_2}{R_0}$, sachant que $C_0$ est ''transparante'' \`a $f_0$ (r\'esonance).
@@ -263,20 +264,186 @@ Adaptation en puissance en $50 \Omega$, $ P_e = P_S = \frac{V^2_2}{R_0}$, sachan
   \label{fig:Adaptation-sim}
 \end{figure}
 
-\subsection{Adaptation avec l'abaque de Smith}
-
-\section{Imp\'edance en entr\'ee et sortie d'un transistor}
-
-\section{Conclusion}
+En mettant une source de tension sinuso\"idale de $V_1 = 0.223 V$ avec une r\'esistance de g\'enerateur de $50 \Omega$ \`a la place du port de
+puissance $P_e$ et en faisant une simulation transient avec le r\'eseau d'adaptation calcul\'e pr\'ecedament, on retrouve une sinuso\"ide d'amplitude
+1 V et de m\^eme fr\'equence aux bornes de la r\'esistance de sortie $1 K\Omega$, l'adaptation est bien v\'erifi\'e.
 
 \clearpage
-\addcontentsline{toc}{section}{R\'ef\'erences}
 
+\subsection{Adaptation avec l'abaque de Smith}
+\subsubsection{Principe d'adaptation avec des \'el\'ement discrets}
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[scale=0.5]{adaptation_elements.png}
+  \caption{Abaque repr\'esentant les adaptations avec des \'elements discrets\cite{conception-adaptation}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[scale=0.5]{adaptation_elements_proposition.png}
+  \caption{Configuration selon 2 m\'ethodes possibles}
+\end{center}
+\end{figure}
+
+\clearpage
+
+\subsubsection{Adaptation avec capacit\'e parrall\`ele et inductance s\'erie}
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[scale=0.47]{architecture-Cparalle-Lseries.png}
+  \caption{Sch\'ema de la premi\`ere m\'ethode d'adaptation}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[width=\linewidth]{smith-capa-parallele-1st-adapt.png}
+  \caption{Abaque de Smith pour une annulation de la partie imaginaire}
+\end{center}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[width=\linewidth]{smith-induct-series-1st-adapt.png}
+  \caption{Abaque de Smith repr\'esentant une adaptation compl\`ete}
+\end{center}
+\end{figure}
+
+\subsubsection{Adaptation avec inductance parrall\`ele et capacit\'e s\'erie}
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[scale=0.47]{architecture-Lparalle-Cseries.png}
+  \caption{Sch\'ema de la deuxi\`eme m\'ethode d'adaptation}
+\end{center}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[width=\linewidth]{smith-induct-parallele-2nd-adapt.png}
+  \caption{Abaque de Smith montrant une adaptation avec la partie imaginaire nulle}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[scale=0.52]{Z11-2nd-adaptation.png}
+  \caption{Adaptation compl\`ete apr\`es l'ajout de la capacit\'e en s\'erie}
+\end{center}
+\end{figure}
+
+\clearpage
+
+\section{Imp\'edance en entr\'ee et sortie d'un transistor}
+\subsection{Mod\`ele du MOSFET petit signal}
+Le mod\`ele petit signal du transistor MOSFET:
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[scale=0.7]{MOS_small_signal.png}
+  \caption{Mod\'elisation du MOSFET pour un petit signal\cite{Analog-CMOS-microelectronics} }
+\end{center}
+\end{figure}
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[scale=0.47]{complete-model.png}
+  \caption{Mod\'elisation compl\`ete du MOSFET en petit signal\cite{conception-circuits-integrees}}
+\end{center}
+\end{figure}
+
+\subsection{Analyse des caract\'eristiques du MOSFET avec la simulation DC}
+
+\iffalse
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=0.48\textwidth]{birds}
+  \end{center}
+  \caption{Birds}
+\end{wrapfigure}
+\fi
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[scale=0.40]{arch-transistor.png}
+  \caption{Sch\'ema du circuit pour une simulation DC}
+\end{center}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[scale=0.46]{Transistor-DC-1.png}
+  \includegraphics[scale=0.40]{Transistor-DC-2.png}
+  \caption{R\'esulats de simulation DC}
+\end{center}
+\end{figure}
+
+\clearpage
+
+\subsection{Imp\'edance d'entr\'ee du MOSFET}
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[scale=0.40]{arch-transistor-input-impedance.png}
+  \caption{Sch\'ema du circuit pour la mesure de l'imp\'edance d'entr\'ee}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[scale=0.40]{sim-input-impedance.png}
+  \caption{Simulation SP du param\`etre $Z_11$ en entr\'ee}
+\end{center}
+\end{figure}
+
+\clearpage
+\subsection{Imp\'edance en sortie du transistor}
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[scale=0.40]{arch-transistor-output-impedance.png}
+  \caption{Sch\'ema du circuit pour l'imp\'edance de sortie}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[scale=0.40]{sim-input-impedance.png}
+  \caption{Simulation SP du param\`etre $Z_11$ sortie}
+\end{center}
+\end{figure}
+
+
+
+\clearpage
+
+\section*{Conclusion}
+\addcontentsline{toc}{section}{Conclusion}
+
+
+\addcontentsline{toc}{section}{R\'ef\'erences}
 \begin{thebibliography}{9}
 
-\bibitem{sim-elec-cours}
-\textit{RF Microelectronics,2nd edition}\\
-\texttt{Behzad Razavi, Prentice Hall}
+\bibitem{conception-adaptation}
+\textit{Conception d'un circuit en L \`a l'aide de l'abaque de Smith}\\
+\texttt{http://f5zv.pagesperso-orange.fr/RADIO/RM/RM23/RM23p/RM23p03.html}
+
+\bibitem{Analog-CMOS-microelectronics}
+\textit{Design of Analog CMOS Integrated Circuits, 2nd Edition}\\
+\texttt{Behzad Razavi, McGraw-Hill Education}
+
+\bibitem{conception-circuits-integrees}
+\textit{Conception de circuits int\'egr\'es analogique}\\
+\texttt{Laurent Aubard, Institut Polytechnique de Grenoble - Phelma}
 
 \end{thebibliography}
 
