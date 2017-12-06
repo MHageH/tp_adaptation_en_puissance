@@ -371,6 +371,9 @@ On peut alors rejoindre le point $Z_0 = 50 \Omega$ au centre de l'abaque en util
 \end{center}
 \end{figure}
 
+La capacit\'e C4 en parall\`ele sert \`a se placer sur le cercle de partie r\'eelle $Z=50 \Omega$ puis l'inductance L0
+annule la partie imaginaire pour se ramener au centre de l'abaque en suivant ce cercle.
+
 \clearpage
 
 \begin{figure}[!htb]
@@ -379,6 +382,8 @@ On peut alors rejoindre le point $Z_0 = 50 \Omega$ au centre de l'abaque en util
   \caption{Abaque de Smith repr\'esentant une adaptation compl\`ete}
 \end{center}
 \end{figure}
+
+On peut voir que lorsqu'on est bien adapt\'e, on d\'ecrit le cercle d'adaptation $50 \Omega$.
 
 \subsubsection{Adaptation avec inductance parrall\`ele et capacit\'e s\'erie}
 
@@ -405,6 +410,10 @@ On peut alors rejoindre le point $Z_0 = 50 \Omega$ au centre de l'abaque en util
 \end{center}
 \end{figure}
 
+Cette derni\`ere m\'ethode utilise le m\^eme principe que celui d'avant, sauf que c'est l'inductance
+en parall\`ele qui annule la partie imaginaire, et l'ajout d'une capacit\'e nous ram\`ene \`a une bonne
+adaptation ($Re\{Z_{11}\} = 50 \Omega$ et $Im\{Z_{11}\} = 0$).
+
 \clearpage
 
 \section{Imp\'edance en entr\'ee et sortie d'un transistor}
@@ -427,14 +436,8 @@ Le mod\`ele petit signal du transistor MOSFET:
 
 \subsection{Analyse des caract\'eristiques du MOSFET avec la simulation DC}
 
-\iffalse
-\begin{wrapfigure}{r}{0.5\textwidth}
-  \begin{center}
-    \includegraphics[width=0.48\textwidth]{birds}
-  \end{center}
-  \caption{Birds}
-\end{wrapfigure}
-\fi
+Une analyse DC est n\'ecessaire pour retrouver les diff\'erentes caract\'eristiques du MOSFET,
+surtout retrouver les valeurs des capacit\'ees parasites $C_{gs}$, $C_{gd}$, $C_{db}$, $C_{sb}$
 
 \begin{figure}[!htb]
 \begin{center}
@@ -453,79 +456,91 @@ Le mod\`ele petit signal du transistor MOSFET:
 \end{center}
 \end{figure}
 
+On retrouve que :\\
+ $C_{gs} = 38.53 fF$, $C_{gd} = 8.783 fF$, les deux capacit\'es les plus int\'eressantes (au niveau
+de l'entr\'ee), ainsi que $g_m = 9.531 m \Omega^{-1}$.
+
 \clearpage
 
 \subsection{Imp\'edance d'entr\'ee du MOSFET}
 
-\begin{wrapfigure}{R}{0.5\textwidth}
-\centering
-\includegraphics[width=0.5\textwidth]{arch-transistor-input-impedance.png}
-\caption{Sch\'ema du circuit pour la mesure de l'imp\'edance d'entr\'ee}
-\end{wrapfigure}
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[width=0.6\textwidth]{arch-transistor-input-impedance.png}
+  \caption{Sch\'ema du circuit pour la mesure de l'imp\'edance d'entr\'ee}
+\end{center}
+\end{figure}
 
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+Pour simuler l'imp\'edance d'entr\'ee du transistor MOS, il faut injecter
+un signal RF, en s\'eparant le DC de l'entr\'ee du MOS par une ins\'ertion
+d'une inductance de shock.
 
-\vskip 2cm
+Cette inductance va \'etablir un r\^ole essentiel dans le comportement
+du transistor. Apr\`es l'etablissement de $Z_{11}$ en $I_{m}$ et $R_{e}$
+en simulation, on trouve qu'il y a une fr\'equence de r\'esonance
+$F_S = 725.4192 MHz$.
+
+Celle-ci est due \`a cause de l'inductance puis les capacit\'es d'entr\'ee
+du MOS :
+\[
+  F_S = \frac{1}{2\pi \sqrt{LC_{in}}}
+\]
+\[
+  \implies C_{in} = \frac{1}{(2\pi F_S)^2 L} = 4.819 \times 10^{-14} F = 48.19 fF.
+\]
 
 \begin{figure}[!htb]
 \begin{center}
-  \includegraphics[scale=0.40]{sim-input-impedance.png}
+  \includegraphics[scale=0.47]{sim-input-impedance.png}
   \caption{Simulation SP du param\`etre $Z_{11}$ en entr\'ee}
 \end{center}
 \end{figure}
 
+On trouve que $C_{in} > C_{gs}$, sachant que $C_{in} = C_{gs} + C_{gd}$.
+
 \clearpage
 \subsection{Imp\'edance en sortie du transistor}
 
-\begin{wrapfigure}{R}{0.5\textwidth}
-\centering
-\includegraphics[width=0.5\textwidth]{arch-transistor-output-impedance.png}
-\caption{Sch\'ema du circuit pour l'imp\'edance de sortie}
-\end{wrapfigure}
-
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
-
-\vskip 2cm
-
-\iffalse
 \begin{figure}[!htb]
 \begin{center}
-  \includegraphics[scale=0.40]{arch-transistor-output-impedance.png}
+  \includegraphics[width=0.75\textwidth]{arch-transistor-output-impedance.png}
   \caption{Sch\'ema du circuit pour l'imp\'edance de sortie}
 \end{center}
 \end{figure}
-\fi
 
 \begin{figure}[!htb]
 \begin{center}
-  \includegraphics[scale=0.40]{sim-input-impedance.png}
+  \includegraphics[scale=0.47]{sim-output-impedance.png}
   \caption{Simulation SP du param\`etre $Z_{11}$ en sortie}
 \end{center}
 \end{figure}
 
+On peut toujours voir que m\^eme en sortie, on arrive \`a trouver une r\'esonance de $Z_{11}$,
+(pour $Im\{Z_{11}\} = 0 $ et $Re\{Z_{11}\} > 0$).
+On a $F_S = 921.76 MHz$, on peut remonter \`a la valeur de $C_out$ :
+\[
+  F_S = \frac{1}{2\pi \sqrt{LC_{out}}}
+\]
+\[
+  \implies C_{out} = \frac{1}{(2\pi F_S)^2 L} = 29.81 fF
+\]
+
+De m\^ene fa\c con, $C_{out}$ repr\'esente $C_{sb} + C_{db}$.
+
 \clearpage
 
 \section*{Conclusion}
+
+Durant ce TP, on a pu adapter un r\'eseau RC \`a travers 2 m\'ethodes d'adaptation diff\'erentes
+et confirmer leur \'equivalence (Abaque de Smith et transformateur d'imp\'edance).
+
+La derni\`ere partie du TP permet de savoir l'effet de l'inductance de shock sur la caract\'erisation
+du MOSFET, ainsi que les valeurs des capacit\'es parasites.
+
+Les connaissances ma\^itris\'es \`a travers le TP permet d'\'etablir rapidement l'adaptation requise
+pour les diff\'erents blocs de circuits int\'egr\'es radiofr\'equence qu'on doit concevoir.
+
+
 \addcontentsline{toc}{section}{Conclusion}
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.4.12)  6 DEC 2017 23:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.4.12)  7 DEC 2017 00:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -642,7 +642,7 @@ File: smith-induct-series-1st-adapt.png Graphic file (type png)
 
 <use smith-induct-series-1st-adapt.png>
 Package pdftex.def Info: smith-induct-series-1st-adapt.png used on input line 3
-78.
+81.
 (pdftex.def)             Requested size: 483.72467pt x 298.59253pt.
 
 <architecture-Lparalle-Cseries.png, id=204, 813.79031pt x 582.67688pt>
@@ -650,7 +650,7 @@ File: architecture-Lparalle-Cseries.png Graphic file (type png)
 
 <use architecture-Lparalle-Cseries.png>
 Package pdftex.def Info: architecture-Lparalle-Cseries.png used on input line 3
-87.
+92.
 (pdftex.def)             Requested size: 382.4815pt x 273.85817pt.
  [9
 
@@ -660,14 +660,14 @@ File: smith-induct-parallele-2nd-adapt.png Graphic file (type png)
 
 <use smith-induct-parallele-2nd-adapt.png>
 Package pdftex.def Info: smith-induct-parallele-2nd-adapt.png used on input lin
-e 396.
+e 401.
 (pdftex.def)             Requested size: 483.72467pt x 299.97986pt.
 
 <Z11-2nd-adaptation.png, id=213, 602.25pt x 451.6875pt>
 File: Z11-2nd-adaptation.png Graphic file (type png)
 
 <use Z11-2nd-adaptation.png>
-Package pdftex.def Info: Z11-2nd-adaptation.png used on input line 403.
+Package pdftex.def Info: Z11-2nd-adaptation.png used on input line 408.
 (pdftex.def)             Requested size: 313.1718pt x 234.87885pt.
  [10
 
@@ -676,20 +676,20 @@ Package pdftex.def Info: Z11-2nd-adaptation.png used on input line 403.
 File: MOS_small_signal.png Graphic file (type png)
 
 <use MOS_small_signal.png>
-Package pdftex.def Info: MOS_small_signal.png used on input line 416.
+Package pdftex.def Info: MOS_small_signal.png used on input line 425.
 (pdftex.def)             Requested size: 207.27295pt x 102.58253pt.
 
 <complete-model.png, id=224, 899.36pt x 304.13625pt>
 File: complete-model.png Graphic file (type png)
  <use complete-model.png>
-Package pdftex.def Info: complete-model.png used on input line 423.
+Package pdftex.def Info: complete-model.png used on input line 432.
 (pdftex.def)             Requested size: 422.69926pt x 142.94405pt.
 
 <arch-transistor.png, id=227, 813.79031pt x 583.42969pt>
 File: arch-transistor.png Graphic file (type png)
 
 <use arch-transistor.png>
-Package pdftex.def Info: arch-transistor.png used on input line 441.
+Package pdftex.def Info: arch-transistor.png used on input line 444.
 (pdftex.def)             Requested size: 325.51036pt x 233.36774pt.
  [11
 
@@ -698,75 +698,73 @@ Package pdftex.def Info: arch-transistor.png used on input line 441.
 File: Transistor-DC-1.png Graphic file (type png)
 
 <use Transistor-DC-1.png>
-Package pdftex.def Info: Transistor-DC-1.png used on input line 450.
+Package pdftex.def Info: Transistor-DC-1.png used on input line 453.
 (pdftex.def)             Requested size: 394.77966pt x 329.67566pt.
 
 <Transistor-DC-2.png, id=239, 988.69376pt x 727.71875pt>
 File: Transistor-DC-2.png Graphic file (type png)
 
 <use Transistor-DC-2.png>
-Package pdftex.def Info: Transistor-DC-2.png used on input line 451.
+Package pdftex.def Info: Transistor-DC-2.png used on input line 454.
 (pdftex.def)             Requested size: 395.4705pt x 291.08234pt.
  [12
 
  <./Transistor-DC-1.png> <./Transistor-DC-2.png>]
-<arch-transistor-input-impedance.png, id=245, 813.79031pt x 582.67688pt>
+<arch-transistor-input-impedance.png, id=246, 813.79031pt x 582.67688pt>
 File: arch-transistor-input-impedance.png Graphic file (type png)
 
 <use arch-transistor-input-impedance.png>
 Package pdftex.def Info: arch-transistor-input-impedance.png used on input line
- 462.
-(pdftex.def)             Requested size: 241.86234pt x 173.16847pt.
+ 469.
+(pdftex.def)             Requested size: 290.23775pt x 207.80751pt.
 
-Underfull \hbox (badness 1005) in paragraph at lines 463--463
-[]\OT1/cmr/m/n/10 Figure 20: |Sch^^Sema du cir-cuit pour la mesure de
- []
-
-<sim-input-impedance.png, id=246, 602.25pt x 451.6875pt>
+<sim-input-impedance.png, id=247, 602.25pt x 451.6875pt>
 File: sim-input-impedance.png Graphic file (type png)
 
 <use sim-input-impedance.png>
-Package pdftex.def Info: sim-input-impedance.png used on input line 482.
-(pdftex.def)             Requested size: 240.89572pt x 180.67178pt.
+Package pdftex.def Info: sim-input-impedance.png used on input line 494.
+(pdftex.def)             Requested size: 283.05753pt x 212.29315pt.
  [13
 
  <./arch-transistor-input-impedance.png> <./sim-input-impedance.png>]
-<arch-transistor-output-impedance.png, id=256, 814.54312pt x 581.92406pt>
+<arch-transistor-output-impedance.png, id=257, 814.54312pt x 581.92406pt>
 File: arch-transistor-output-impedance.png Graphic file (type png)
 
 <use arch-transistor-output-impedance.png>
 Package pdftex.def Info: arch-transistor-output-impedance.png used on input lin
-e 492.
-(pdftex.def)             Requested size: 241.86234pt x 172.78491pt.
-File: sim-input-impedance.png Graphic file (type png)
- <use sim-input-impedance.png>
-Package pdftex.def Info: sim-input-impedance.png used on input line 521.
-(pdftex.def)             Requested size: 240.89572pt x 180.67178pt.
+e 506.
+(pdftex.def)             Requested size: 362.7935pt x 259.18181pt.
 
-[14
+<sim-output-impedance.png, id=258, 602.25pt x 451.6875pt>
+File: sim-output-impedance.png Graphic file (type png)
 
- <./arch-transistor-output-impedance.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 554.
+<use sim-output-impedance.png>
+Package pdftex.def Info: sim-output-impedance.png used on input line 513.
+(pdftex.def)             Requested size: 283.05753pt x 212.29315pt.
+ [14
+
+ <./arch-transistor-output-impedance.png> <./sim-output-impedance.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 569.
  [15
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 554.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 569.
  (./tp_aep.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 554.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 554.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 569.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 569.
 Package rerunfilecheck Info: File `tp_aep.out' has not changed.
 (rerunfilecheck)             Checksum: E5FD282D0D4D9B41D090E48BBAD2FA85;1801.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 554.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 569.
  ) 
 Here is how much of TeX's memory you used:
- 8232 strings out of 495020
- 123903 string characters out of 6181324
+ 8236 strings out of 495020
+ 124018 string characters out of 6181324
  205371 words of memory out of 5000000
- 11248 multiletter control sequences out of 15000+600000
+ 11251 multiletter control sequences out of 15000+600000
  13571 words of font info for 53 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  42i,15n,41p,250b,392s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -780,12 +778,13 @@ s/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on tp_aep.pdf (15 pages, 1979428 bytes).
+y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on tp_aep.pdf (15 pages, 2033493 bytes).
 PDF statistics:
- 331 PDF objects out of 1000 (max. 8388607)
- 251 compressed objects within 3 object streams
+ 337 PDF objects out of 1000 (max. 8388607)
+ 254 compressed objects within 3 object streams
  69 named destinations out of 1000 (max. 500000)
- 304 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 309 words of extra memory for PDF output out of 10000 (max. 10000000)
 
