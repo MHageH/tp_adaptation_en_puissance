@@ -68,11 +68,30 @@
 \section*{Introduction}
 \addcontentsline{toc}{section}{Introduction}
 
+La conception des circuits int\'egr\'es radiofr\'equence repr\'esente un d\'efi assez
+complexe ainsi que de plusieurs opportunit\'es pour la recherche de nouveaux solutions.
+
+Le but principal de ce TP se repr\'esente par la n\'ecessit\'e de la ma\^itrise de la
+cha\^ine d'adaptation, en d\'ebutant par la prise d'un simple cas d'un circuit RC s\'erie.
+L'\'etude se poursuit par l'essai d'adaptation en suivant 2 m\'ethodes : Soit \`a l'aide
+d'un transformateur d'imp\'edance o\`u on ajoute des \'el\'ements discrets pour r\'eduire
+l'imp\'edance ou \'eliminer les parties imaginaires, en assurant l'adaptation. Soit avec la
+m\'ethode classique, l'abaque de Smith.
+
+La derni\`ere partie consiste sur une analyse d'un transistor RF, avec son imp\'edance en
+entr\'ee et en sortie.
+
 \section{Imp\'edance et Admittance - Analyse sous Cadence}
 \subsection{\'Etude th\'eorique}
 
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[scale=0.40]{circuit_parallel_equiv.png}
+  \caption{Sch\'ema \'equivalent du montage s\'erie \cite{RFIC-cours}}
+\end{center}
+\end{figure}
+
 On essaye en premier temps de retrouver le circuit \'equivalent au celui RC en s\'erie :
-On a :
 \begin{equation}
   Z_C = \frac{1}{jC\omega} \phantom{8} \phantom{8} \phantom{8} X_S = - \frac{1}{C\omega}j
 \end{equation}
@@ -85,7 +104,8 @@ Q = \frac{\|X_S \|}{R} = \frac{1}{R_S C\omega} = 0.159 < 3
 X_S = \frac{1}{C_S \omega} = 159.15
 \]
 
-On prend :
+En se basant sur \cite{RFIC-cours}, et pour $ Q < 3 $, il faut prendre les valeurs totales de $R_p$ et $X_p$ sans tenir compte
+de l'approximation.
 \begin{equation}
   \begin{split}
   R_p = R_S (1 + Q^2) \\
@@ -93,15 +113,18 @@ On prend :
   \end{split}
 \end{equation}
 
-Ce qui nous donne $R_p = 1025,28 \Omega$, $X_p = 6.454 \times 10^3$
+Ce qui nous donne $R_p = 1025,28 \Omega$, $X_p = 6.454 \times 10^3$.
+\`A partir de $X_p$, on peut remonter vers $C_p$ :
 \[
 X_P = \frac{1}{C_P \omega} \implies C_P = \frac{1}{X_P \omega} = 24.7 fF
 \]
 
 \subsection{Simulation sous Cadence}
-\textcolor{red}{\textbf{Que repr\'esente $S_{11}$?}}\\
-On effectue une simulation du circuit RC pour analyser les param\`etres $S_{11}$, $Z_{11}$ et $Y_{11}$
+G\'en\'eralement, le param\`etre $S_11$ repr\'esente le coefficient de r\'eflexion en entr\'ee, si la sortie est bien adapt\'ee.
+Ici, on trouve qu'il repr\'esente les pertes en entr\'ee.\\
+On effectue une simulation du circuit RC pour analyser les param\`etres $S_{11}$, $Z_{11}$ et $Y_{11}$ :
 
+\clearpage
 \begin{figure}[!htb]
   \begin{subfigure}[t]{.5\linewidth}
       \centering
@@ -117,8 +140,6 @@ On effectue une simulation du circuit RC pour analyser les param\`etres $S_{11}$
   \label{fig:RC-sim}
 \end{figure}
 
-\clearpage
-
 On retrouve :
 \begin{equation}
   \begin{split}
@@ -128,7 +149,18 @@ On retrouve :
   \end{split}
 \end{equation}
 
-Sachant que $ Y = G + j B $
+Les valeurs de $Z_{d}$ et de $Y_{d}$ sont extraites de l'abaque de Smith apr\`es simulation, elles sont normalis\'ees par rapport
+\`a $50 \Omega$.
+
+Pour remonter aux valeurs de $Z_{11}$ et $Y_{11}$, on prend :
+\begin{equation}
+  \begin{split}
+    Y_{11} = \frac{Y_d}{50} \\
+    Z_{11} = Z_{d}.50
+  \end{split}
+\end{equation}
+
+Sachant que $ Y = G + j B $ et $Re\{Y_{11}\} = 975.88 \mu $, $Im\{Y_{11}\}= 155.3 \mu$ :
 \[
 G = \frac{1}{R_P} \implies R_p = \frac{1}{G} = 1025 \Omega
 \]
@@ -136,12 +168,14 @@ G = \frac{1}{R_P} \implies R_p = \frac{1}{G} = 1025 \Omega
 B = \frac{1}{X_P} \implies X_P = \frac{1}{B} = 6.442 \times 10^3
 \]
 
+Les valeurs calcul\'ees dans la partie th\'eorique conforme bien \`a celles simul\'ees.
 
 \section{Adaptation \`a $Z_0$}
 
 \subsection{Adaptation avec un transformateur d'imp\'edance}
 \subsubsection{Annulation de la partie imaginaire}
 On ajoute une inductance en s\'erie au circuit RC, pour annuler la partie imaginaire $X_S$.
+On peut voir sur la figure 3 qu'on a $Im\{Z_{11}\} \simeq 0 $ \`a $f=1 GHz$.
 \[
 X_L = \omega L = - X_S \implies X_L = 159.15
 \]
@@ -196,6 +230,11 @@ Z_{in} = \frac{(1 - j R_0 C_1 \omega_0) R_0}{1 + (R_0 C_1 \omega_0)^2} =\frac{R_
 
 On retrouve $ C_1 = 693.7 fF$.
 
+La figure 4 montre que pour  $ C_1 = 693.7 fF$, on retrouve une imp\'edance
+$Re\{Z_{11}\} = 50 \Omega$.
+
+\clearpage
+
 \begin{figure}[!htb]
   \begin{subfigure}[t]{.5\linewidth}
       \centering
@@ -237,6 +276,9 @@ X_{L11} = - Img\{Zin\} = \frac{R^2_0 C_1 \omega_0} {1 + (R_0 C_1 \omega_0)^2}
   \label{fig:L1-sim}
 \end{figure}
 
+On peut voir que sur la simulation de la figure 5, on arrive \`a obtenir $Re\{Z_{11}\} = 50 \Omega$ en entr\'ee ainsi que
+ $Im\{Z_{11}\} \simeq 0$.
+
 \subsubsection{Calcul de la tension du circuit d'adaptation}
 On a :
 \[
@@ -245,9 +287,12 @@ P_e = 0 \phantom{4} db_{m} = 1 mW = \frac{V^2_1}{50} \implies V_1 = \sqrt{P_0 \t
 
 Adaptation en puissance en $50 \Omega$, $ P_e = P_S = \frac{V^2_2}{R_0}$, sachant que $C_0$ est ''transparante'' \`a $f_0$ (r\'esonance).
 
+\clearpage
 \[
   V_2 = V_3 = \sqrt{R_0 \times P_e} = 1 V
 \]
+
+\iffalse
 \begin{figure}[!htb]
   \centering
   \begin{subfigure}[t]{.5\linewidth}
@@ -263,10 +308,25 @@ Adaptation en puissance en $50 \Omega$, $ P_e = P_S = \frac{V^2_2}{R_0}$, sachan
   \caption{Sch\'ema et Simulation du circuit}
   \label{fig:Adaptation-sim}
 \end{figure}
+\fi
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[width=0.7\linewidth]{V-Adaptation.png}
+  \caption{Sch\'ema complet}
+\end{center}
+\end{figure}
 
 En mettant une source de tension sinuso\"idale de $V_1 = 0.223 V$ avec une r\'esistance de g\'enerateur de $50 \Omega$ \`a la place du port de
 puissance $P_e$ et en faisant une simulation transient avec le r\'eseau d'adaptation calcul\'e pr\'ecedament, on retrouve une sinuso\"ide d'amplitude
 1 V et de m\^eme fr\'equence aux bornes de la r\'esistance de sortie $1 K\Omega$, l'adaptation est bien v\'erifi\'e.
+
+\begin{figure}[!htb]
+\begin{center}
+  \includegraphics[width=0.7\linewidth]{V-Adaptation-sim.png}
+  \caption{Simulation transient du sch\'ema complet}
+\end{center}
+\end{figure}
 
 \clearpage
 
@@ -275,10 +335,16 @@ puissance $P_e$ et en faisant une simulation transient avec le r\'eseau d'adapta
 
 \begin{figure}[!htb]
 \begin{center}
-  \includegraphics[scale=0.5]{adaptation_elements.png}
+  \includegraphics[scale=0.65]{adaptation_elements.png}
   \caption{Abaque repr\'esentant les adaptations avec des \'elements discrets\cite{conception-adaptation}}
 \end{center}
 \end{figure}
+
+Une Inductance en s\'erie va faire d\'eplacer l'imp\'edance complexe dans le sens horaire sur le cercle d'imp\'edance Z \`a partie r\'eelle fixe ; et dans le sens antihoraire pour une capacit\'e s\'erie.
+Une Inductance en parall\`ele  va faire d\'eplacer l'imp\'edance complexe dans le sens antihoraire sur le cercle d'admittance Y \`a partie r\'eelle fixe ; et dans le sens horaire pour une capacit\'e s\'erie.
+
+On peut alors rejoindre le point $Z_0 = 50 \Omega$ au centre de l'abaque en utilisant 2 chemins diff\'erents \`a partir du m\^eme point d'imp\'edance complexe (cf fig 8).
+
 
 \begin{figure}[!htb]
 \begin{center}
@@ -391,38 +457,71 @@ Le mod\`ele petit signal du transistor MOSFET:
 
 \subsection{Imp\'edance d'entr\'ee du MOSFET}
 
-\begin{figure}[!htb]
-\begin{center}
-  \includegraphics[scale=0.40]{arch-transistor-input-impedance.png}
-  \caption{Sch\'ema du circuit pour la mesure de l'imp\'edance d'entr\'ee}
-\end{center}
-\end{figure}
+\begin{wrapfigure}{R}{0.5\textwidth}
+\centering
+\includegraphics[width=0.5\textwidth]{arch-transistor-input-impedance.png}
+\caption{Sch\'ema du circuit pour la mesure de l'imp\'edance d'entr\'ee}
+\end{wrapfigure}
+
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+
+\vskip 2cm
 
 \begin{figure}[!htb]
 \begin{center}
   \includegraphics[scale=0.40]{sim-input-impedance.png}
-  \caption{Simulation SP du param\`etre $Z_11$ en entr\'ee}
+  \caption{Simulation SP du param\`etre $Z_{11}$ en entr\'ee}
 \end{center}
 \end{figure}
 
 \clearpage
 \subsection{Imp\'edance en sortie du transistor}
 
+\begin{wrapfigure}{R}{0.5\textwidth}
+\centering
+\includegraphics[width=0.5\textwidth]{arch-transistor-output-impedance.png}
+\caption{Sch\'ema du circuit pour l'imp\'edance de sortie}
+\end{wrapfigure}
+
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha alpha
+
+\vskip 2cm
+
+\iffalse
 \begin{figure}[!htb]
 \begin{center}
   \includegraphics[scale=0.40]{arch-transistor-output-impedance.png}
   \caption{Sch\'ema du circuit pour l'imp\'edance de sortie}
 \end{center}
 \end{figure}
+\fi
 
 \begin{figure}[!htb]
 \begin{center}
   \includegraphics[scale=0.40]{sim-input-impedance.png}
-  \caption{Simulation SP du param\`etre $Z_11$ sortie}
+  \caption{Simulation SP du param\`etre $Z_{11}$ en sortie}
 \end{center}
 \end{figure}
-
-
 
 \clearpage
 
@@ -432,6 +531,10 @@ Le mod\`ele petit signal du transistor MOSFET:
 
 \addcontentsline{toc}{section}{R\'ef\'erences}
 \begin{thebibliography}{9}
+
+\bibitem{RFIC-cours}
+\textit{Radio Frequency Integrated Circuits Course}\\
+\texttt{Sylvain Bourdel, Florence Podevin, Institut Polytechnique de Grenoble - Phelma}
 
 \bibitem{conception-adaptation}
 \textit{Conception d'un circuit en L \`a l'aide de l'abaque de Smith}\\
