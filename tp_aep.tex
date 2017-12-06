@@ -42,7 +42,7 @@
 \renewcommand{\abstractname}{Pr\'eambule}
 \title{\textbf{Projet Circuits Int\'egr\'es Radiofr\'equence \\ TP Adaptation en Puissance}}
 \author{Mohamed Hage Hassan \\ Cl\'ement Cheung}
-\date{29 Novembre 2017}
+\date{6 D\'ecembre 2017}
 \maketitle
 \thispagestyle{empty}
 
@@ -164,10 +164,15 @@ L = \frac{X_L}{\omega} = 25.33 nH
 \end{figure}
 
 \subsubsection{Abaissement de l'imp\'edance}
+On ajoute une capacit\'e en parall\`ele pour abaisser la tension : \\
 $Re\{Z_{in}\} = 50 \Omega$ et pour le circuit LRC, on a $Z_0 = R_0$ \`a la r\'esonance.
 
 \[
 \frac{1}{Z_{in}} =\frac{1}{Z_1} + \frac{1}{Z_0} = jC_1\omega_0 + \frac{1}{R_0}
+\]
+
+\[
+Z_{in} = \frac{1}{jC_1\omega_0 + \frac{1}{R_0}}
 \]
 
 et
@@ -177,7 +182,7 @@ Re\{Z_{in}\} = 50 \Omega = Re\bigg(\frac{R_0}{1+ j R_0 C_1 \omega_0}\bigg)
 
 Pour $Z_{in}$ :
 \[
-Z_in = \frac{(1 - j R_0 C_1 \omega_0) R_0}{1 + (R_0 C_1 \omega_0)^2} =\frac{R_0}{1 + (R_0 C_1 \omega_0)^2} - j \frac{R^2_0 C_1 \omega_0} {1 + (R_0 C_1 \omega_0)^2}
+Z_{in} = \frac{(1 - j R_0 C_1 \omega_0) R_0}{1 + (R_0 C_1 \omega_0)^2} =\frac{R_0}{1 + (R_0 C_1 \omega_0)^2} - j \frac{R^2_0 C_1 \omega_0} {1 + (R_0 C_1 \omega_0)^2}
 \]
 
 \[
@@ -190,18 +195,79 @@ Z_in = \frac{(1 - j R_0 C_1 \omega_0) R_0}{1 + (R_0 C_1 \omega_0)^2} =\frac{R_0}
 
 On retrouve $ C_1 = 693.7 fF$.
 
+\begin{figure}[!htb]
+  \begin{subfigure}[t]{.5\linewidth}
+      \centering
+      \includegraphics[width=1.1\linewidth]{Circuit-C1.png}
+      \label{fig:c1circuit}
+  \end{subfigure}%
+  \begin{subfigure}[t]{.5\linewidth}
+    \centering
+    \includegraphics[width=1\linewidth]{Circuit-C1-sim.png}
+    \label{fig:c1circuit-sim}
+  \end{subfigure}%
+  \caption{Sch\'ema et Simulation du circuit}
+  \label{fig:C1-sim}
+\end{figure}
+
+
 \subsubsection{Adjustement final de l'imp\'edance}
 On essaye d'annuler la partie imaginaire \`a l'\'entr\'ee du circuit d'adaptation : On ajoute une imp\'edance en s\'erie.
 Sachant que : $X_{L1} = \omega_0 L_1$
 \[
 X_{L11} = - Img\{Zin\} = \frac{R^2_0 C_1 \omega_0} {1 + (R_0 C_1 \omega_0)^2}
 \]
-
 \[
-\implies L_1 = \frac{R^2_0 C_1} {1 + (R_0 C_1 \omega_0)^2}
+\implies L_1 = \frac{R^2_0 C_1} {1 + (R_0 C_1 \omega_0)^2} \implies L_1 = 34.6 nH
+\]
+\begin{figure}[!htb]
+  \centering
+  \begin{subfigure}[t]{.4\linewidth}
+      \centering
+      \includegraphics[width=1\linewidth]{circuit-L1.png}
+      \label{fig:L1circuit}
+  \end{subfigure}%
+  \begin{subfigure}[t]{.4\linewidth}
+    \centering
+    \includegraphics[width=1\linewidth]{circuit-L1-sim.png}
+    \label{fig:L1circuit-sim}
+  \end{subfigure}%
+  \caption{Sch\'ema et Simulation du circuit}
+  \label{fig:L1-sim}
+\end{figure}
+
+\subsubsection{Calcul de la tension du circuit d'adaptation}
+On a :
+\[
+P_e = 0 \phantom{4} db_{m} = 1 mW = \frac{V^2_1}{50} \implies \sqrt{P_0 \times 50} = 0.223 V
 \]
 
-d'ou $L_1 = 34.6 nH$
+Adaptation en puissance en $50 \Omega$, $ P_e = P_S = \frac{V^2_2}{R_0}$, sachant que $C_0$ est ''transparante'' \`a $f_0$ (r\'esonance).
+
+\[
+  V_2 = V_3 = \sqrt{R_0 \times P_e} = 1 V
+\]
+\begin{figure}[!htb]
+  \centering
+  \begin{subfigure}[t]{.5\linewidth}
+      \centering
+      \includegraphics[width=1\linewidth]{V-Adaptation.png}
+      \label{fig:Adaptation-V}
+  \end{subfigure}%
+  \begin{subfigure}[t]{.5\linewidth}
+    \centering
+    \includegraphics[width=1\linewidth]{V-Adaptation-sim.png}
+    \label{fig:Adaptation-V-sim}
+  \end{subfigure}%
+  \caption{Sch\'ema et Simulation du circuit}
+  \label{fig:Adaptation-sim}
+\end{figure}
+
+\subsection{Adaptation avec l'abaque de Smith}
+
+\section{Imp\'edance en entr\'ee et sortie d'un transistor}
+
+\section{Conclusion}
 
 \clearpage
 \addcontentsline{toc}{section}{R\'ef\'erences}
